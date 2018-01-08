@@ -1,7 +1,7 @@
 {
   "name": "node-sensor-agent",
   "version": "1.0.0",
-  "description": "Configurable MQTT bot",
+  "description": "Configurable Sensor Agent",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -12,7 +12,7 @@
   "dependencies": {
     "bunyan": "^1.8.12",
     "dotenv": "^4.0.0",
-    "mqtt": "^2.14.0"
+    "mqtt": "^2.15.0"
   },
   "devDependencies": {
     "eslint": "^4.15.0",
