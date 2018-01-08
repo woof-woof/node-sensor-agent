@@ -1,0 +1,22 @@
+{
+  "name": "node-sensor-agent",
+  "version": "1.0.0",
+  "description": "Configurable MQTT bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test/"
+  },
+  "author": "Vlad Mariasiu (mariasiuvlad@gmail.com)",
+  "license": "MIT",
+  "dependencies": {
+    "bunyan": "^1.8.12",
+    "dotenv": "^4.0.0",
+    "mqtt": "^2.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
+}

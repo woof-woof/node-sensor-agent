@@ -1,0 +1,27 @@
+#!/usr/local/bin/node
+const { promisify } = require('util');
+const cp = require('child_process');
+
+const exec = promisify(cp.exec);
+
+async function main() {
+  try {
+    const { stdout, stderr } = await exec('cat /Users/vlad/Projects/thermo/temp-bot/data/temp.out.sample');
+    if (stderr) {
+      throw new Error(stderr);
+    }
+    const regEx = /Humidity\s=\s(\d+.\d+) % Temperature = (\d+.\d+)/g;
+    const [, humidity, temperature] = regEx.exec(stdout);
+    const lines = stdout.split('\n').filter(l => l);
+    const timestamp = lines[lines.length - 1];
+    console.log(JSON.stringify({
+      humidity,
+      temperature,
+      timestamp,
+    }));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+main();
