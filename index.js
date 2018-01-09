@@ -28,7 +28,7 @@ client.on('message', async (topic, buffer) => {
     }
     const output = JSON.parse(stdout.trim());
     output.id = id;
-    client.publish(action.outputTopic, JSON.stringify(output));
+    client.publish(action.outputTopic, JSON.stringify(output), { retain: true });
   } catch (err) {
     logger.error(err);
   }
