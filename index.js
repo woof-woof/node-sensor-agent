@@ -7,6 +7,7 @@ const logger = require('./logger');
 
 const exec = util.promisify(cp.exec);
 const client = mqtt.connect(`mqtt://${connection.hostname}`, connection.options);
+let storedOutput;
 
 client.on('connect', () => {
   logger.info('@connect');
@@ -27,9 +28,11 @@ client.on('message', async (topic, buffer) => {
       throw new Error(stderr);
     }
     const output = JSON.parse(stdout.trim());
+    storedOutput = output;
     output.id = id;
     client.publish(action.outputTopic, JSON.stringify(output), { retain: true });
   } catch (err) {
     logger.error(err);
+    client.publish(action.outputTopic, JSON.stringify(storedOutput), { retain: true });
   }
 });
