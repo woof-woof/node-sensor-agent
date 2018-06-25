@@ -6,7 +6,7 @@ const exec = promisify(cp.exec);
 
 async function main() {
   try {
-    const { stdout, stderr } = await exec(`cat ${process.env.TEMP_FILE_PATH || process.argv[2]}`);
+    const { stdout, stderr } = await exec(`cat ${process.argv[2]}`);
     if (stderr) {
       throw new Error(stderr);
     }
